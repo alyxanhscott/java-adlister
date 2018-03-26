@@ -8,7 +8,23 @@ import javax.servlet.http.*;
 
 @WebServlet (name = "HelloWorldServlet", urlPatterns = "/hello")
 public class HelloWorldServlet extends HttpServlet {
+
+    public int counter;
+
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.getWriter().println("<h1>Hello, World!</h1>");
+        String getName = req.getParameter("name");
+        String reset = req.getParameter("reset");
+        if (reset != null) {
+            counter = 0;
+        }
+        if (getName == null) {
+            res.getWriter().println("<h1>Hello, World!</h1>");
+        } else {
+            res.getWriter().printf("<h1>Hello, %s</h1>", getName);
+        }
+        counter++;
+        res.getWriter().printf("<h1>%d</h1>", counter);
+
     }
+
 }
