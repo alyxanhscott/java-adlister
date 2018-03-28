@@ -18,10 +18,8 @@
 </c:if>
     <h1>Enter your name: </h1>
     <form action="/name" method="POST">
-        <div class="form-group">
             <label for="name">Name: </label>
             <input id="name" name="name" type="text">
-        </div>
         <input type="submit" value="go">
     </form>
 
