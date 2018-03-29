@@ -22,7 +22,7 @@ public class loginServlet extends HttpServlet {
             if (username.equals("admin") && password.equals("password")) {
                 resp.sendRedirect("/profile");
             } else {
-                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+                resp.sendRedirect("/login.jsp");
             }
     }
 }
