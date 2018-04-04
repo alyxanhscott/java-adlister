@@ -12,13 +12,13 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
             return;
         }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-        }
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
@@ -34,8 +34,8 @@ public class RegisterServlet extends HttpServlet {
             User u = new User(0, username, email, password);
             long r = DaoFactory.getUsersDao().insert(u);
             if (r > 0) {
-            request.getSession().setAttribute("user", username);
-            response.sendRedirect("/profile");
+                request.getSession().setAttribute("user", DaoFactory.getUsersDao().findByUsername(username));
+                response.sendRedirect("/profile");
             }
         } else {
             response.sendRedirect("/register");
