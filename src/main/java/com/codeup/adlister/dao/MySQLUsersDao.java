@@ -25,7 +25,7 @@ public class MySQLUsersDao implements Users {
     @Override
     public User findByUsername(String username) {
         try {
-            String searchQuery = "SELECT * FROM users WHERE STRCMP(users.username, ?) = 0";
+            String searchQuery = "SELECT * FROM users WHERE STRCMP(username, ?) = 0 LIMIT 1";
             PreparedStatement ps = connection.prepareStatement(searchQuery);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
@@ -46,7 +46,7 @@ public class MySQLUsersDao implements Users {
     @Override
     public User findByPassword(String password) {
         try {
-            String searchQuery = "SELECT * FROM users WHERE STRCMP(users.password, ?) = 0";
+            String searchQuery = "SELECT * FROM users WHERE STRCMP(password, ?) = 0 LIMIT 1";
             PreparedStatement ps = connection.prepareStatement(searchQuery);
             ps.setString(1, password);
             ResultSet rs = ps.executeQuery();

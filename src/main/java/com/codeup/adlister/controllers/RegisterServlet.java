@@ -25,8 +25,8 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        boolean validUsername = username.length() <= 50 && username.length() > 8;
-        boolean validPass = password.length() <= 50 && password.length() > 6 && !password.contains(username);
+        boolean validUsername = username.length() <= 50 && username.length() > 5;
+        boolean validPass = password.length() <= 50 && password.length() > 5 && !password.contains(username);
         boolean validEmail = email.length() <= 50 && email.length() > 5 && email.contains("@");
 
 
